@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const RepositorySchema = new Schema({
-  timestamps: true,
   name: {
     type: String,
     required: true,
@@ -22,7 +21,7 @@ const RepositorySchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    required: true
   },
   issues: [
     {
@@ -30,6 +29,14 @@ const RepositorySchema = new Schema({
       ref: "Issue",
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Repository = mongoose.model("Repository", RepositorySchema);
